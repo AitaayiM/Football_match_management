@@ -1,0 +1,1319 @@
+{
+	"info": {
+		"_postman_id": "a484b976-bef1-4bcb-845b-1fe019bfb2bd",
+		"name": "FootballE2E",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30952472"
+	},
+	"item": [
+		{
+			"name": "add team",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var teamID = jsonData.idEquipe;",
+							"pm.environment.set(\"teamID\", teamID);",
+							"",
+							"pm.test(\"la creation d'un nouveu equipe\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "      {\n        \"nomEquipe\": \"etoro\",\n        \"pays\":\"Portugal\"\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/teams",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get team",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Récupération de l'équipe créée\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/teams/{{teamID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams",
+						"{{teamID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update team",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"le modification d'un equipe\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomEquipe\": \"Etoro Portugal\",\n        \"pays\":\"Portugal\"\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/teams/{{teamID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams",
+						"{{teamID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete team",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/teams/{{teamID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams",
+						"{{teamID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "after deleting the team",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"team not found\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/teams/{{teamID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams",
+						"{{teamID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all teams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/teams",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stade",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var stadeID = jsonData.idStade;",
+							"pm.environment.set(\"stadeID\", stadeID);",
+							"",
+							"pm.test(\"la creation d'un nouveu stade\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"nomStade\": \"Stade 9\",\n        \"ville\": \"London\"\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/stadiums",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"stadiums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get stade",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Récupération du stade créée\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/stadiums/{{stadeID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"stadiums",
+						"{{stadeID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update stade",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"le modification d'un stade\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"nomStade\": \"Stade 9\",\n        \"ville\": \"London capitale\"\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/stadiums/{{stadeID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"stadiums",
+						"{{stadeID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete stade",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/stadiums/{{stadeID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"stadiums",
+						"{{stadeID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "after deleting the stadium",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"stade not found\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/stadiums/{{stadeID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"stadiums",
+						"{{stadeID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all stadiums",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/stadiums",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"stadiums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add arbitre",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var arbitreID = jsonData.idArbitre;",
+							"pm.environment.set(\"arbitreID\", arbitreID);",
+							"",
+							"pm.test(\"la creation d'un nouveu arbitre\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nom\": \"Arbitre 3\",\n    \"nationalite\": \"US\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/referees",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"referees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get arbitre",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Récupération de l'arbitre créée\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/referees/{{arbitreID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"referees",
+						"{{arbitreID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update arbitre",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"le modification d'un arbitre\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "      {\n        \"nom\": \"Arbitre 4\",\n        \"nationalite\": \"Egypt\"\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/referees/{{arbitreID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"referees",
+						"{{arbitreID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete arbitre",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/referees/{{arbitreID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"referees",
+						"{{arbitreID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "after deleting the referee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"arbitre not found\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/referees/{{arbitreID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"referees",
+						"{{arbitreID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all referees",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/referees",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"referees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add player",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var joueurID = jsonData.idJoueur;",
+							"pm.environment.set(\"joueurID\", joueurID);",
+							"",
+							"pm.test(\"la creation d'un nouveu joueur\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"nomJoueur\": \"Joueur 4\",\n        \"poste\": \"attaquant\",\n        \"equipe\": {\n          \"idEquipe\": 2\n        }\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/players",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get player",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Récupération du joueur crée\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/players/{{joueurID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"players",
+						"{{joueurID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update player",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"le modification d'un joueur\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"nomJoueur\": \"Joueur 4\",\n        \"poste\": \"joker\",\n        \"equipe\": {\n          \"idEquipe\": 2\n        }\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/players/{{joueurID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"players",
+						"{{joueurID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete player",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/players/{{joueurID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"players",
+						"{{joueurID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "after deleting the player",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"player not found\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/players/{{joueurID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"players",
+						"{{joueurID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all players",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/players",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add matche",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var matchID = jsonData.idMatch;",
+							"pm.environment.set(\"matchID\", matchID);",
+							"",
+							"pm.test(\"la creation d'un nouveu match\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "      {\n        \"dateMatch\": \"2021-02-28\",\n        \"heureMatch\": 8,\n        \"arbitre\": {\"idArbitre\": 3},\n        \"stade\": {\"idStade\": 2},\n        \"equipes\": [{\"idEquipe\": 2}, {\"idEquipe\": 3}]\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/matches",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get matche",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Récupération du match crée\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/matches/{{matchID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches",
+						"{{matchID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update matche",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"le modification d'un match\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "      {\n        \"dateMatch\": \"2023-05-28\",\n        \"heureMatch\": 13,\n        \"arbitre\": {\"idArbitre\": 2},\n        \"stade\": {\"idStade\": 2},\n        \"equipes\": [{\"idEquipe\": 2}, {\"idEquipe\": 3}]\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/matches/{{matchID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches",
+						"{{matchID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Matche",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/matches/{{matchID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches",
+						"{{matchID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "after deleting the Matche",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"matches not found\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/matches/{{matchID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches",
+						"{{matchID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all Matches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/matches",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "teams of maroc",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Toutes les équipes ont le pays 'Maroc'\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    ",
+							"    pm.expect(jsonData).to.be.an(\"array\");",
+							"",
+							"    jsonData.forEach(function (equipe) {",
+							"        pm.expect(equipe.pays).to.eql(\"Maroc\");",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/teams/maroc",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams",
+						"maroc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "matches which are scheduled for 02/28/2021",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Toutes les matches sont programmées pour le 2021-02-28\", function () {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData).to.be.an(\"array\");",
+							"",
+							"    jsonData.forEach(function (match) {",
+							"        pm.expect(match.dateMatch).to.eql(\"2021-02-28\");",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/matches/2021-02-28",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches",
+						"2021-02-28"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "the stadium where the match id=23",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/matches/23",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches",
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "players of the ATL MADRID team",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/teams/ATL MADRID/joueurs",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams",
+						"ATL MADRID",
+						"joueurs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "two teams of the match of id=23",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/matches/23/equipes",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches",
+						"23",
+						"equipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "the attackers of the PSG team",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"les attaquants de l’équipe PSG\", function () {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData).to.be.an(\"array\");",
+							"",
+							"    jsonData.forEach(function (joueur) {",
+							"        pm.expect(joueur.poste).to.eql(\"attaquant\");",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/teams/PSG/joueurs/attaquant",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams",
+						"PSG",
+						"joueurs",
+						"attaquant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete all matches already passed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/matches/past",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches",
+						"past"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "the remaining matches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Aucune matche n'a encore eu lieu\", function () {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData).to.be.an(\"array\");",
+							"",
+							"    var currentDate = new Date().toISOString().split('T')[0];",
+							"",
+							"    jsonData.forEach(function (match) {",
+							"        var matchDate = new Date(match.dateMatch);",
+							"        pm.expect(matchDate.getTime()).to.be.above(new Date(currentDate).getTime());",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/matches",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
